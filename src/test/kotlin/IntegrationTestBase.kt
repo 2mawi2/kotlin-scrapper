@@ -1,13 +1,13 @@
-import scrapper.Video
 import scrapper.main
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.launch
+import model.Video
 import org.dizitart.kno2.getRepository
 import org.dizitart.no2.objects.filters.ObjectFilters
 import org.junit.AfterClass
 import org.junit.Before
 import org.junit.BeforeClass
-import scrapper.DbProvider
+import persistence.DbProvider
 
 abstract class IntegrationTestBase {
     abstract val data: List<Video>

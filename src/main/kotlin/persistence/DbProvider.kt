@@ -1,7 +1,9 @@
-package scrapper
+package persistence
 
 import org.dizitart.kno2.nitrite
 import org.dizitart.no2.Nitrite
+import app.VIDEOS_DB
+import app.VIDEOS_TEST_DB
 
 interface IDbProvider {
     fun get(): Nitrite

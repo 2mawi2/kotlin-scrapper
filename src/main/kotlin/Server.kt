@@ -1,5 +1,10 @@
 package scrapper
 
+import app.fromJson
+import app.toJson
+import model.PagedRequest
+import model.SearchRequest
+import model.VideoResult
 import org.jetbrains.ktor.host.embeddedServer
 import org.jetbrains.ktor.http.HttpStatusCode
 import org.jetbrains.ktor.netty.Netty
@@ -13,6 +18,10 @@ import org.koin.dsl.module.Module
 import org.koin.dsl.module.applicationContext
 import org.koin.log.PrintLogger
 import org.koin.standalone.StandAloneContext.startKoin
+import persistence.DbProvider
+import persistence.IDbProvider
+import persistence.IVideoRepo
+import persistence.VideoRepo
 
 
 val module: Module = applicationContext {
