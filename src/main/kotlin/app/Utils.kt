@@ -10,8 +10,9 @@ fun <E> List<E>.second(): E = this[1]
 fun <E> List<E>.third(): E = this[2]
 
 
-fun <T : Any> T.getPropertyValue(propertyName: String): Any? =
-        this.javaClass.kotlin
-                .declaredMemberProperties
-                .firstOrNull { it.name == propertyName }?.get(this)
+fun <T : Any> T.getPropertyValue(propertyName: String): Any? {
+    return this.javaClass.kotlin
+            .declaredMemberProperties
+            .firstOrNull { it.name == propertyName }?.get(this)
+}
 

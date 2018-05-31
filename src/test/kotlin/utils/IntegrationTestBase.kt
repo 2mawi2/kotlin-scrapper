@@ -1,3 +1,5 @@
+package utils
+
 import scrapper.main
 import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.launch

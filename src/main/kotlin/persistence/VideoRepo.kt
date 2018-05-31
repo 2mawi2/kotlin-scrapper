@@ -28,12 +28,23 @@ class VideoRepo(private val db: IDbProvider) : IVideoRepo {
         }
     }
 
-    private fun searchByAll(videos: Cursor<Video>, sf: String): List<Video> = videos
-            .map { Pair(it, countContains(it, sf)) }
-            .filter { it.second > 0 }
-            .sortedByDescending { it.second }
-            .map { it.first }
+    private class RatedVideo(val video: Video, val rating: Int)
+
+    private fun searchByAll(videos: Cursor<Video>, sf: String): List<Video> = splitSearchInput(sf)
+            .flatMap { rateVideos(videos, it) }
+            .filter { it.rating > 0 }
+            .sortedByDescending { it.rating }
+            .map { it.video }
             .distinct()
+
+    private fun rateVideos(videos: Cursor<Video>, word: String): List<RatedVideo> =
+            videos.map { RatedVideo(it, countContains(it, word)) }
+
+
+    private fun splitSearchInput(sf: String): List<String> = sf.split(" ")
+            .map { it.trim() }
+            .toMutableList()
+            .also { it.add(sf) }
 
     private fun countContains(i: Video, sf: String): Int =
             listOf(i.description.contains(sf),

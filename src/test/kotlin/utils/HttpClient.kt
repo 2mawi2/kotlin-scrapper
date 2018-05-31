@@ -1,3 +1,5 @@
+package utils
+
 import app.fromJson
 import app.toJson
 import com.github.kittinunf.fuel.core.FuelError
@@ -10,7 +12,10 @@ class HttpClient {
         const val baseUri = "http://localhost:5000"
 
         inline fun <reified TResult : Any> get(uri: String): TResult? {
-            val (_, _, result) = "$baseUri$uri".httpGet().responseString()
+            val (_, _, result) = "$baseUri$uri"
+                    .httpGet()
+                    .responseString()
+
             return handleResult(result)
         }
 

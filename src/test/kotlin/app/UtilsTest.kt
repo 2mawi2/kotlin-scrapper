@@ -1,7 +1,9 @@
-import app.second
-import app.third
+package app
+
 import org.amshove.kluent.`should be`
-import org.testng.annotations.Test
+import org.amshove.kluent.shouldBe
+import org.amshove.kluent.shouldEqual
+import org.junit.Test
 
 class UtilsKtTest {
     @Test
@@ -15,5 +17,11 @@ class UtilsKtTest {
     fun `third should return third element of list`() {
         val result = listOf("first", "second", "third").third()
         result `should be` "third"
+    }
+
+    @Test
+    fun `should get property value`() {
+        class Foo(val intValue: Int = 5)
+        Foo().getPropertyValue("intValue").shouldEqual(5)
     }
 }
